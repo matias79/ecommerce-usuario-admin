@@ -18,7 +18,7 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {Credenciales, Usuario} from '../models';
+import {CambioClave, Credenciales, Usuario} from '../models';
 import {UsuarioRepository} from '../repositories';
 import {AdministradorClavesService} from '../services';
 
@@ -188,8 +188,51 @@ export class UsuarioController {
       clave: credenciales.clave
      }});
      return usuario;
+   }
 
-
+   @post('/cambiar-clave')
+   @response(200, {
+     description: 'cambio clave de usurios',
+     content: {'application/json': {schema: getModelSchemaRef(CambioClave)}},
+   })
+   async cambiarClave(
+     @requestBody({
+       content: {
+         'application/json': {
+           schema: getModelSchemaRef(CambioClave, {
+             title: 'Cambio de clave del usuario Usuario',
+            }),
+         },
+       },
+     })
+     credecialesClave: CambioClave,
+   ): Promise<Boolean> {
+    let respuesta = await this.servicioClaves.CambiarClave(credecialesClave);
+    return respuesta;
 
    }
+
+   @post('/recuperar-clave')
+   @response(200, {
+     description: 'recuperar clave de usurios',
+     content: {'application/json': {schema: {}}},
+   })
+   async recuperarClave(
+     @requestBody({
+       content: {
+         'application/json': {
+         },
+       },
+     })
+     correo: string,
+   ): Promise<Usuario | null> {
+    let usuario = await this.servicioClaves.RecuperarClave(correo);
+    if(usuario){
+      //invocar al servicio de notificaciones para enviar por correo
+    }
+
+    return usuario;
+
+   }
+
 }
