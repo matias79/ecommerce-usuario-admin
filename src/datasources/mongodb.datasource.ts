@@ -4,11 +4,11 @@ import {juggler} from '@loopback/repository';
 const config = {
   name: 'mongodb',
   connector: 'mongodb',
-  url: 'mongodb+srv://e-commerce-user:3z5uNhE0fXHhISiC@clusterretos1.ljupe.mongodb.net/ecommerce_db?retryWrites=true&w=majority',
+  url: 'mongodb+srv://josecommerce:jose3079@clusterretos1.ljupe.mongodb.net/ecommerce_db?retryWrites=true&w=majority',
   host: 'localhost',
   port: 27017,
-  user: 'e-commerce-user',
-  password: '3z5uNhE0fXHhISiC',
+  user: '',
+  password: '',
   database: 'ecommerce_db',
   useNewUrlParser: true
 };

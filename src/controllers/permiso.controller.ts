@@ -37,7 +37,7 @@ export class PermisoController {
         'application/json': {
           schema: getModelSchemaRef(Permiso, {
             title: 'NewPermiso',
-            exclude: ['_id'],
+            exclude: [/*'_id'*/],
           }),
         },
       },
